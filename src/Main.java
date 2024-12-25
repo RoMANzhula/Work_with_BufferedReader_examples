@@ -4,81 +4,81 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static List<String> wordsList = new ArrayList<String>(); //создаем строковую коллекцию в виде Списка с интерфейсом ArrayList
+    public static List<String> wordsList = new ArrayList<String>(); // створюємо колекцію рядків у вигляді списку з інтерфейсом ArrayList
 
-    static { //статический блок, в котором проинициализируем (заполним) нашу коллекцию из слов
+    static { // статичний блок, в якому ініціалізуємо (заповнюємо) нашу колекцію словами
         wordsList.add("Some");
         wordsList.add("word");
         wordsList.add("in");
         wordsList.add("text");
     }
-    public static void main(String[] args) throws IOException{
-        String urlString = "https://www.someSite.com/index.html"; //строка для URL адреса
-        String pathToFile = "c://...//file.txt"; //строка для адреса(пути) к файлу
+    public static void main(String[] args) throws IOException {
+        String urlString = "https://www.someSite.com/index.html"; // рядок для URL адреси
+        String pathToFile = "c://...//file.txt"; // рядок для адреси (шляху) до файлу
 
-        readingFromUrl(urlString); //вызываем метод, который читает с сайта символьные данные в консоль
-        readingFromFileByPath(pathToFile); //вызываем метод, который читает из файла в консоль
-        returnFromFileOnlyStringWithTwoMatchingWordsFromTheList(wordsList);
+        readingFromUrl(urlString); // викликаємо метод, який читає з сайту символи та виводить в консоль
+        readingFromFileByPath(pathToFile); // викликаємо метод, який читає з файлу в консоль
+        returnFromFileOnlyStringWithTwoMatchingWordsFromTheList(wordsList); // викликаємо метод, який фільтрує рядки з файлу
     }
 
-    public static void readingFromUrl(String urlString) throws IOException { //метод, который считывает данные с сайта(на вход
-        //принимает адрес URL)  и выводит символьные данные в консоль
-        URL url = new URL(urlString); //создаем переменную типа URL, в которую передадим адрес для считывания
+    public static void readingFromUrl(String urlString) throws IOException { // метод, який читає дані з сайту (на вхід приймає адресу URL)
+        // та виводить символи в консоль
+        URL url = new URL(urlString); // створюємо змінну типу URL, в яку передаємо адресу для читання
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream())); //открываем поток для ввода
-        //символьных данных и сразу буферизируем его
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream())); // відкриваємо потік для вводу
+        // символів та відразу буферизуємо його
 
-        String containerForInputLine; //создаем строковую переменную, в которую будем читать по одной строке из сайта
+        String containerForInputLine; // створюємо змінну для зчитування рядка з сайту
 
-        while ((containerForInputLine = bufferedReader.readLine()) != null) { //пока строка с прочитанными данными не будет пустой
-            System.out.println(containerForInputLine); //будем выводить ее в консоль
+        while ((containerForInputLine = bufferedReader.readLine()) != null) { // поки рядок з прочитаними даними не буде порожнім
+            System.out.println(containerForInputLine); // виводимо його в консоль
         }
-        bufferedReader.close(); //закрываем поток
+        bufferedReader.close(); // закриваємо потік
     }
 
-    public static void readingFromFileByPath(String path) throws IOException { //метод, который считывает данные с файла(на вход
-        //принимает адрес(путь) к файлу) и выводит символьные данные в консоль
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(path))); //открываем поток
-        //для ввода символьных данных и сразу буферизируем его
+    public static void readingFromFileByPath(String path) throws IOException { // метод, який читає дані з файлу (на вхід
+        // приймає адресу (шлях) до файлу) та виводить символи в консоль
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(path))); // відкриваємо потік
+        // для вводу символів та відразу буферизуємо його
 
-        String containerForDataFromFile; //создаем строковую переменную, в которую будем читать по одной строке из файла
+        String containerForDataFromFile; // створюємо змінну для зчитування рядка з файлу
 
-        while ((containerForDataFromFile = bufferedReader.readLine()) != null) { //пока строка с прочитанными данными не будет пустой
-            System.out.println(containerForDataFromFile); //будем выводить ее в консоль
+        while ((containerForDataFromFile = bufferedReader.readLine()) != null) { // поки рядок з прочитаними даними не буде порожнім
+            System.out.println(containerForDataFromFile); // виводимо його в консоль
         }
 
-        bufferedReader.close(); //освобождаем ресурсы, закрываем потоки
+        bufferedReader.close(); // очищаємо ресурси, закриваємо потоки
     }
 
-    public static void returnFromFileOnlyStringWithTwoMatchingWordsFromTheList(List<String> words) throws IOException { //метод
-        //который будет возвращать из указанного файла только те строки, в которых будет всего два слова из коллекции(Списка)
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in)); //открываем буферизированный поток
-        //для ввода данных с клавиатуры(System.in)
-        String nameFile = bufferedReader.readLine(); //создаем строковую переменную, в которую читаем введенную строку пользователем
-        FileReader fileReader = new FileReader(nameFile); //с помощью Адаптера FileReader читаем данные из указанного файла
-        BufferedReader reader = new BufferedReader(fileReader); //буферизируем считанные Адаптером данные
+    public static void returnFromFileOnlyStringWithTwoMatchingWordsFromTheList(List<String> words) throws IOException { // метод
+        // який повертає з файлу тільки ті рядки, в яких буде всього два слова з колекції (списку)
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in)); // відкриваємо буферизований потік
+        // для вводу даних з клавіатури (System.in)
+        String nameFile = bufferedReader.readLine(); // створюємо змінну, в яку зчитуємо введену користувачем строку
+        FileReader fileReader = new FileReader(nameFile); // за допомогою адаптера FileReader зчитуємо дані з файлу
+        BufferedReader reader = new BufferedReader(fileReader); // буферизуємо зчитані дані
 
-        while (reader.ready()) { //цикл будет выполняться пока есть данные для чтения
-            String data = reader.readLine(); //создаем строковую переменную и читаем в нее целыми строками (строка считается целой,
-            //пока в ней не появится символ перехода строка (Enter))
-            String[] wordsArr = data.split(" "); //создаем строковый массив в который разбиваем считанную строку на слова(разделителем
-            //в данном случае выступает пробел - " ")
-            int count = 0; //создаем целочисленную переменную, которая выступает в роли счетчика(будет считать совпадения слов в
-            //массиве и коллекции)
-            for (int i = 0; i < wordsArr.length; i++) { //циклом for проходимся по всем элементам массива
-                for (String element : words) { //с помощью for-each проходимся по каждому элементу из Коллекции
-                    if(wordsArr[i].equals(element)) //если элемент массива совпадает с элементом коллекции, то
-                        count++; //увеличиваем счетчик на 1
+        while (reader.ready()) { // цикл виконується, поки є дані для читання
+            String data = reader.readLine(); // створюємо змінну та зчитуємо в неї цілу строку (строка вважається цілісною,
+            // поки в ній не з'явиться символ переходу на новий рядок (Enter))
+            String[] wordsArr = data.split(" "); // створюємо масив рядків, у який розбиваємо зчитану строку на слова (розділювачем
+            // є пробіл - " ")
+            int count = 0; // створюємо змінну для підрахунку збігів (кількість збігів слів з масиву і колекції)
+            for (int i = 0; i < wordsArr.length; i++) { // циклом for проходимо всі елементи масиву
+                for (String element : words) { // за допомогою циклу for-each проходимо кожен елемент з колекції
+                    if(wordsArr[i].equals(element)) { // якщо елемент масиву співпадає з елементом колекції, то
+                        count++; // збільшуємо лічильник на 1
+                    }
                 }
             }
-            if (count == 2) { //если значение счетчика = 2 (т.е. у нас есть совпадение двух слов и только 2 слов), то
-                System.out.println(data); //выводим строку с соответствующим совпадением
+            if (count == 2) { // якщо лічильник дорівнює 2 (тобто знайдено рівно два співпадіння слів), то
+                System.out.println(data); // виводимо рядок, що відповідає цьому збігу
             }
 
         }
-        bufferedReader.close(); //очищаем ресурсы, закрываем поток
-        fileReader.close(); //очищаем ресурсы, закрываем поток
-        reader.close(); //очищаем ресурсы, закрываем поток
+        bufferedReader.close(); // очищаємо ресурси, закриваємо потік
+        fileReader.close(); // очищаємо ресурси, закриваємо потік
+        reader.close(); // очищаємо ресурси, закриваємо потік
     }
 
 }
